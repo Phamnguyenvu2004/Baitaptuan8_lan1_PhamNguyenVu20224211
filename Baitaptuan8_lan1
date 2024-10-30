@@ -1,0 +1,60 @@
+#include <iostream>
+
+using namespace std;
+
+struct Node {
+    int heSo;
+    int soMu;
+    Node* next;
+};
+
+class DaThuc {
+public:
+    Node* dau;
+
+    DaThuc() {
+        dau = NULL;
+    }
+
+    void nhapDaThuc() {
+        int n;
+        cout << "Nhap so luong so hang: ";
+        cin >> n;
+
+        for (int i = 0; i < n; i++) {
+            int hs, sm;
+            cout << "Nhap he so thu " << i + 1 << ": ";
+            cin >> hs;
+            cout << "Nhap so mu thu " << i + 1 << ": ";
+            cin >> sm;
+
+            if (hs != 0) {
+                Node* p = new Node;
+                p->heSo = hs;
+                p->soMu = sm;
+                p->next = dau;
+                dau = p; 
+            }
+        }
+    }
+
+    void xuatDaThuc() {
+        Node* p = dau;
+        while (p != NULL) {
+            cout << p->heSo << "x^" << p->soMu;
+            p = p->next;
+            if (p != NULL) {
+                cout << " + ";
+            }
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    DaThuc daThuc;
+    daThuc.nhapDaThuc();
+    cout << "Da thuc vua nhap: ";
+    daThuc.xuatDaThuc();
+    return 0;
+}
